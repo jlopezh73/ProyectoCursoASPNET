@@ -1,0 +1,56 @@
+@page
+@model EditarCursoModel
+
+@if (Model.curso == null) {
+    return;
+}
+
+ViewData["title"] = $"Detalles del Curso - {Model.curso.Nombre}";
+
+
+<h3 style="border-bottom: 1px solid #000; margin-bottom:20px;">Edición del curso - @Model.curso.Nombre</h3>
+<form class="form" method="post">
+    <input type="hidden" asp-for="@Model.cursoNuevo">    
+    <div class="form-group">
+        <label asp-for="@Model.curso.Clave"></label>
+        <input type="text" class="form-control" asp-for="@Model.curso.Clave">        
+        <span asp-validation-for="@Model.curso.Clave" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Nombre"></label>
+        <input type="text" class="form-control" asp-for="@Model.curso.Nombre">        
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Descripcion">Descripción: </label>
+        <textarea class="form-control" asp-for="@Model.curso.Descripcion"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Instructor">Instructor: </label>
+        <input type="text" class="form-control" asp-for="@Model.curso.Instructor">        
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.FechaInicio">Fecha de Inicio: </label>
+        <input type="date" class="form-control" asp-for="@Model.curso.FechaInicio">        
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.FechaTermino">Fecha de Término: </label>
+        <input type="date" class="form-control" asp-for="@Model.curso.FechaTermino">        
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.NoHoras">No. Horas: </label>
+        <input type="number" class="form-control" asp-for="@Model.curso.NoHoras">        
+        <span asp-validation-for="@Model.curso.NoHoras" class="text-danger"></span>
+    </div>
+
+    <div asp-validation-summary="All" class="text-danger" 
+            style="border:1px solid #444; background-color:#ffe; margin-top:20px; padding: 5px;">
+
+    </div>
+
+    <br>
+    <button class="btn btn-sm btn-primary">Guardar</button>
+    &nbsp;&nbsp;
+    <a class="btn btn-sm btn-secondary" asp-page="Index">Cancelar</a>
+
+        
+</form>

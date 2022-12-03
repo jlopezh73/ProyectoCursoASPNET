@@ -1,0 +1,13 @@
+@page
+@model EliminarCursoModel
+@{
+    ViewData["title"]  = "Eliminar Curso";
+}
+
+<div class="jumbotron">
+    <h3 class="display-4">Ha sido eliminado</h3>
+    <p class="lead">El curso @Model.curso.Nombre</p>
+    <hr class="my-4">
+    <p>ha sido eliminado</p>
+    <a asp-page="Index" class="btn btn-sm btn-primary">Regresar a la lista de cursos</a>
+</div>

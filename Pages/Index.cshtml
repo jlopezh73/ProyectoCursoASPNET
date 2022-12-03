@@ -1,0 +1,87 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Cursos</h1>    
+    <form class="form" method="post" >
+        <div class="row">
+            <label class="col-sm-1" asp-for="@Model.patronBuscar">Buscar:</label>
+            <div class="col-sm-5">
+                <input type="text" asp-for="@Model.patronBuscar" class="form-control">
+            </div>
+            
+            <button class="btn btn-sm btn-danger col-sm-1">Buscar cursos</button> 
+        </div>
+    </form>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Clave</td>
+                <td>Nombre</td>
+                <td>No. Horas</td>
+                <td>Opciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var curso in Model.listaCursos)
+            {
+                <tr>
+                    <td>@curso.Clave</td>
+                    <td><a asp-page="./DetallesCurso" asp-route-id="@(curso.Clave)">@curso.Nombre</a></td>
+                    <td>@curso.NoHoras</td>
+                    <td>
+                        <a asp-page="EditarCurso" asp-route-id="@(curso.Clave)"><i class="bi bi-pencil-fill"></i></a>
+                        &nbsp;&nbsp;&nbsp;                        
+                        <a class="text-danger" onclick="confirmarEliminarCurso('@(curso.Clave)', '@(curso.Nombre)');"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <a asp-page="EditarCurso" asp-route-id="0" class="btn btn-sm btn-primary col-sm-2">Agregar Curso</a>
+    </div>
+
+    <form id="formaEliminarCurso" asp-page="EliminarCurso" asp-method="post">
+        <input type="hidden" name="idCursoEliminar" id="idCursoEliminar">
+    </form>
+
+    <div class="modal fade" tabindex="-1" id="dialogoEliminar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar Curso</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                               aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-danger">¿Está seguro de eliminar el curso - 
+                        <strong><span id="nombreCursoEliminar"></span></strong>?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-danger" onclick="eliminarCurso();">Eliminar Curso</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var claveCursoEliminar;
+    function confirmarEliminarCurso(clave, nombre) {
+        claveCursoEliminar = clave;
+        $("#nombreCursoEliminar").html(nombre);
+        $("#dialogoEliminar").modal("show");
+    }
+
+    function eliminarCurso() {
+        //document.location = "EliminarCurso?id="+claveCursoEliminar;
+        $("#idCursoEliminar").val(claveCursoEliminar);
+        $("#formaEliminarCurso").submit();
+    }
+</script>

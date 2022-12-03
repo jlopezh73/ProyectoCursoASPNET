@@ -1,0 +1,48 @@
+@page
+@model DetallesCursoModel
+@{
+    ViewData["title"] = $"Detalles del Curso - {Model.curso.Nombre}";
+    var fecInicio = Model.curso.FechaInicio;
+    var fecTermino = Model.curso.FechaTermino;
+    String []meses={"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
+    String []dias={"Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"};
+
+    var fechaInicio = $"{dias[(int)fecInicio.DayOfWeek-1]}, {fecInicio.Day} de {meses[(int)fecInicio.Month-1]} del {fecInicio.Year}";   
+    var fechaTermino = $"{dias[(int)fecTermino.DayOfWeek-1]}, {fecTermino.Day} de {meses[(int)fecTermino.Month-1]} del {fecTermino.Year}";   
+}
+
+<h3 style="border-bottom: 1px solid #000; margin-bottom:20px;">Detalles del curso - @Model.curso.Nombre</h3>
+<div class="form">
+    <div class="form-group">
+        <label asp-for="@Model.curso.Clave">Clave del Curso: </label>
+        <strong><label>@Model.curso.Clave</label></strong>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Nombre">Nombre del Curso: </label>
+        <strong><label>@Model.curso.Nombre</label></strong>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Nombre">Descripción: </label>
+        <strong><label>@Model.curso.Descripcion</label></strong>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Nombre">Instructor: </label>
+        <strong><label>@Model.curso.Instructor</label></strong>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Nombre">Fecha de Inicio: </label>
+        <strong><label>@fechaInicio</label></strong>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Nombre">Fecha de Término: </label>
+        <strong><label>@fechaTermino</label></strong>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.curso.Nombre">No. Horas: </label>
+        <strong><label>@Model.curso.NoHoras</label></strong>
+    </div>
+
+
+    <br>
+    <a asp-page="Index" class="btn btn-sm btn-primary">Regresar a la lista de cursos</a>
+</div>
