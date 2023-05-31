@@ -14,13 +14,12 @@ jobs:
   build:
     name: Construcción del Proyecto y ejecución de pruebas unitarias
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -54,4 +53,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Docker build
         run: docker image build -f Dockerfile -t proyectocursonet .
+      - name: Save Image
+        run: docker save -o proyectocursonet.tar proyectocursonet
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with: 
+          path: proyectocursonet.tar
+
     
