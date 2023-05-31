@@ -26,6 +26,12 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish -c Release -o publish
+    - name: Upload
+      uses: actions/upload-artifct@v3
+      with: 
+        path: publish
   docker:
     name: Poner el contenido del proyecto en un contenedor Docker
     runs-on: ubuntu-latest
