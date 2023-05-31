@@ -13,7 +13,8 @@ on:
 jobs:
   build:
     name: Construcción del Proyecto y ejecución de pruebas unitarias
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+      #ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -34,7 +35,7 @@ jobs:
         path: publish
   storage:
     name: File Storage
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [build]
     steps:
       - name: Descargar archivos
@@ -47,7 +48,7 @@ jobs:
 
   docker:
     name: Poner el contenido del proyecto en un contenedor Docker
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [build]
     steps:     
       - uses: actions/checkout@v3
