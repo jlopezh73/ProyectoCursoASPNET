@@ -38,7 +38,7 @@ jobs:
     needs: [build]
     steps:
       - name: Descargar archivos
-        uses: action/download-artifact@v3
+        uses: actions/download-artifact@v3
         with: 
           path: publish
       - name: Mostrar archivos
