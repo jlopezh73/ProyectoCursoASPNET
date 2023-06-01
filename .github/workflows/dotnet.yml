@@ -62,5 +62,6 @@ jobs:
           path: proyectocursonet.tar
       - name: Mostrar archivos
         shell: bash
-        run: ls -R publish/ 
+        run: ls -R publish/ && cp -R publish /Users/jlopezh73/Proyectos2023/Publish
+        
     
