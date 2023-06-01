@@ -68,4 +68,4 @@ jobs:
         run: cp -R publish/artifact/* /home/jlopezh73/Publish
       - name: Crear Imagen de Docker desde archivo
         shell: bash
-        run: docker load -i proyectocursonet.tar/artifact/proyectocursonet.tar
+        run: sudo docker load -i proyectocursonet.tar/artifact/proyectocursonet.tar
