@@ -65,7 +65,7 @@ jobs:
         run: ls -R publish/ 
       - name: Copiar archivos a destino
         shell: bash
-        run: cp -R publish/artifact/* /Users/jlopezh73/Proyectos2023/Publish
+        run: cp -R publish/artifact/* /home/jlopezh73/Publish
       - name: Crear Imagen de Docker desde archivo
         shell: bash
         run: docker load -i proyectocursonet.tar/artifact/proyectocursonet.tar
