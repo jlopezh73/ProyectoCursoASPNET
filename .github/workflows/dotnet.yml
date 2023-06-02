@@ -56,10 +56,7 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           path: proyectocursonet.tar
-      - name: Descargar archivos 1
-        uses: actions/download-artifact@v3
-        with: 
-          path: publish          
+      
       - name: Mostrar archivos
         shell: bash
         run: ls -R publish/ 
