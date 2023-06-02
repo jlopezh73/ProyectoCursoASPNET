@@ -51,15 +51,15 @@ jobs:
     name: File Storage
     runs-on: self-hosted
     needs: [docker]
-    steps:
-      - name: Descargar archivos 1
-        uses: actions/download-artifact@v3
-        with: 
-          path: publish
+    steps:      
       - name: Descargar archivos 2         
         uses: actions/download-artifact@v3
         with: 
           path: proyectocursonet.tar
+      - name: Descargar archivos 1
+        uses: actions/download-artifact@v3
+        with: 
+          path: publish          
       - name: Mostrar archivos
         shell: bash
         run: ls -R publish/ 
